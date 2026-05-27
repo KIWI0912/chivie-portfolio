@@ -23,8 +23,6 @@
   --max-width: 1380px;
 }
 
-/* Language Display */
-
 html[data-current-lang="zh"] [data-lang="en"] {
   display: none !important;
 }
@@ -32,8 +30,6 @@ html[data-current-lang="zh"] [data-lang="en"] {
 html[data-current-lang="en"] [data-lang="zh"] {
   display: none !important;
 }
-
-/* Base */
 
 * {
   box-sizing: border-box;
@@ -73,6 +69,9 @@ body.modal-open {
 img {
   display: block;
   max-width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
 }
 
 a {
@@ -111,8 +110,6 @@ button {
 .text-button:hover {
   text-decoration: underline;
 }
-
-/* Topbar */
 
 .topbar {
   position: sticky;
@@ -167,8 +164,6 @@ button {
   background: var(--primary);
 }
 
-/* Hero */
-
 .hero {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 1.2rem auto 2rem;
@@ -205,8 +200,6 @@ button {
   font-size: 1.08rem;
 }
 
-/* Buttons */
-
 .project-button {
   display: inline-flex;
   align-items: center;
@@ -241,8 +234,6 @@ button {
   border: 1px solid rgba(47, 125, 77, 0.16);
 }
 
-/* Layout */
-
 .layout {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto;
@@ -256,8 +247,6 @@ button {
 .content {
   min-width: 0;
 }
-
-/* Sidebar */
 
 .sidebar {
   position: sticky;
@@ -313,8 +302,6 @@ button {
   box-shadow: 0 8px 18px rgba(47, 125, 77, 0.22);
 }
 
-/* Sidebar Group */
-
 .sidebar-group {
   display: grid;
   gap: 0.35rem;
@@ -362,8 +349,6 @@ button {
   font-size: 0.88rem;
   padding-left: 0.9rem;
 }
-
-/* Sections */
 
 .section {
   padding: 2rem;
@@ -431,8 +416,6 @@ button {
   margin-bottom: 0.6rem;
 }
 
-/* Grids */
-
 .about-grid,
 .project-list,
 .award-list,
@@ -456,8 +439,6 @@ button {
 .prd-grid {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-
-/* Cards */
 
 .project-card,
 .info-card,
@@ -510,8 +491,6 @@ button {
   margin-bottom: 0.8rem;
 }
 
-/* Notes and Blocks */
-
 .privacy-note {
   padding: 1rem;
   background: rgba(47, 125, 77, 0.07);
@@ -527,6 +506,20 @@ button {
   border: 1px dashed rgba(47, 125, 77, 0.22);
   border-radius: 14px;
   font-size: 0.92rem;
+}
+
+.proof-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  color: var(--muted);
+  background: rgba(47, 125, 77, 0.06);
+  border: 1px dashed rgba(47, 125, 77, 0.22);
+  border-radius: 14px;
+  font-size: 0.92rem;
+}
+
+.proof-note p {
+  margin: 0;
 }
 
 .case-block {
@@ -547,8 +540,6 @@ button {
   padding-left: 1.2rem;
   color: var(--muted);
 }
-
-/* Tech Tags */
 
 .tech-list {
   display: flex;
@@ -586,8 +577,6 @@ button {
   margin-top: auto;
 }
 
-/* Skills */
-
 .skills-category {
   margin-top: 1.6rem;
 }
@@ -614,8 +603,6 @@ button {
   line-height: 1.35;
 }
 
-/* Gallery */
-
 .media-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
@@ -624,6 +611,8 @@ button {
 }
 
 .media-gallery figure {
+  position: relative;
+  overflow: hidden;
   margin: 0;
   padding: 0.75rem;
   background: var(--surface-soft);
@@ -638,6 +627,7 @@ button {
   border-radius: 14px;
   object-fit: cover;
   background: #ffffff;
+  filter: saturate(0.92) contrast(0.96);
 }
 
 .media-gallery figcaption {
@@ -648,7 +638,43 @@ button {
   text-align: center;
 }
 
-/* Education */
+.protected-gallery figure {
+  position: relative;
+  overflow: hidden;
+}
+
+.protected-gallery figure::after {
+  content: "PORTFOLIO PREVIEW ONLY";
+  position: absolute;
+  inset: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(47, 125, 77, 0.26);
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+  transform: rotate(-24deg);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.protected-gallery figure::before {
+  content: "仅用于作品集预览";
+  position: absolute;
+  right: 1rem;
+  bottom: 2.7rem;
+  z-index: 4;
+  padding: 0.24rem 0.55rem;
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(47, 125, 77, 0.58);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  pointer-events: none;
+}
 
 .education-timeline {
   display: grid;
@@ -699,6 +725,8 @@ button {
 }
 
 .education-gallery figure {
+  position: relative;
+  overflow: hidden;
   margin: 0;
   padding: 0.75rem;
   background: #ffffff;
@@ -712,6 +740,7 @@ button {
   height: 150px;
   object-fit: cover;
   border-radius: 14px;
+  filter: saturate(0.92) contrast(0.96);
 }
 
 .education-gallery figcaption {
@@ -720,8 +749,6 @@ button {
   font-size: 0.85rem;
   text-align: center;
 }
-
-/* Lists */
 
 .plain-list {
   margin-top: 0.6rem;
@@ -733,8 +760,6 @@ button {
   color: var(--muted);
   line-height: 1.6;
 }
-
-/* PDF Modal */
 
 .pdf-modal {
   position: fixed;
@@ -800,8 +825,6 @@ button {
   background: #f3f4f6;
 }
 
-/* Footer */
-
 .footer {
   width: min(var(--max-width), calc(100% - 2rem));
   margin: 0 auto 2rem;
@@ -814,8 +837,6 @@ button {
   text-align: center;
   font-size: 0.9rem;
 }
-
-/* Responsive */
 
 @media (max-width: 960px) {
   .layout {
@@ -948,5 +969,9 @@ button {
   .pdf-modal-header,
   .pdf-modal-footer {
     padding: 0.75rem;
+  }
+
+  .protected-gallery figure::after {
+    font-size: 0.72rem;
   }
 }
